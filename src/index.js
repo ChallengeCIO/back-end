@@ -17,19 +17,6 @@ const REDIRECT_URL = OAuth2Data.client.redirect
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL)
 var authed = false;
 
-const BASE_API_PATH = "https://api.stackexchange.com/2.2/search/advanced";
-const _config = {
-    _listen: true,
-
-    custom: {
-        pageSize: 5,
-        order: "desc",
-        accepted: "True",
-        showEmpty: true
-    }
-};
-
-
 app.get('/login-google', (req, res) => {
     if (!authed) {
         // Generate an OAuth URL and redirect there
@@ -85,6 +72,19 @@ app.get('/auth/google/callback', function (req, res) {
         });
     }
 });
+
+const BASE_API_PATH = "https://api.stackexchange.com/2.2/search/advanced";
+const _config = {
+    _listen: true,
+
+    custom: {
+        pageSize: 5,
+        order: "desc",
+        accepted: "True",
+        showEmpty: true
+    }
+};
+
 
 const buildUrl = ({
     message
